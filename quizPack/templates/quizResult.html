@@ -6,7 +6,7 @@
             <img src="{{ url_for('static', filename = 'images/user.jpg') }}" alt="">
             <div class="details">
                 <h1>username</h1>
-                <h2>result: 0/10</h2>
+                <h2>result: <span>0</span>/10</h2>
             </div>
         </div>
         <img class="tp-pattern q-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
@@ -54,7 +54,8 @@
     prev = document.querySelector('.prev')
     exp = document.querySelector('.exp')
     explainBlock = document.querySelector('.explanation p')
-
+    points = document.querySelector('.u-result h2 span')
+    points.innerHTML = result['points']
 
     let showQuestions = () => {
         let q_c = 0
@@ -121,7 +122,9 @@
         opt3.innerHTML = qs[keys[q_c]].opt3;
         opt4.innerHTML = qs[keys[q_c]].opt4;
         explainBlock.innerText = result[keys[q_c]].explanation
+        console.log(result)
     }
     showQuestions()
+
 </script>
 {% endblock %}

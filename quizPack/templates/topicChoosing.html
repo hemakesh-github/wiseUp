@@ -9,6 +9,14 @@
             <form action="" method="POST" class = "c-form">
                 <label for="topic">Enter topic for generating Quiz</label><br>
                 <input type="text" id = "topic" name = 'topic' placeholder="Enter topics..."><br>
+                <label for="diff-level">Choose Difficulty Level</label><br>
+                <select name="diff-level" id="diff-level" class="diff-level">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select><br>
                 <button id = "topic-btn" class="sbt-btn">Start Quiz</button>
             </form>
         </div>
@@ -30,9 +38,9 @@ let getQuestions = () => {
     const str = window.location.href;
     const lastSlashIndex = str.lastIndexOf('/');
     const next = str.slice(0,lastSlashIndex + 1) + 'q';
-
+    const diffLevel = document.querySelector('.diff-level').value;
     formData.append('topic', topic)
-    formData.append('diffLevel', )
+    formData.append('diffLevel', diffLevel)
     console.log(formData)
     fetch("/topicChoose", {
         method: 'POST',

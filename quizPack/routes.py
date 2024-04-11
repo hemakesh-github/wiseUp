@@ -53,7 +53,7 @@ def ChoseTopic():
     if request.method == 'POST':
         topic = request.form['topic']
         diffLevel = request.form['diffLevel']
-        print(topic)
+        print(diffLevel)
         q = utils.Question()
         questions = q.getQuestion(topic)
         print(questions['question1'].keys())

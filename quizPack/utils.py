@@ -26,10 +26,10 @@ class Question(LLMConfig):
         super().__init__()
         self.finalResult = {}
     
-    def getQuestion(self, topic, current_Questions = {}, n = N):
-        q = rf'''Generate a unique question in the  in the following topics. topics: {topic} and the difficulty level is 1 out of 5 the following should be the structure for each question:
+    def getQuestion(self, topic, current_Questions = {}, n = N, diffLevel = 1):
+        q = rf'''Generate a unique question in the  in the following topics. topics: {topic} and the difficulty level is {diffLevel} out of 5 the following should be the structure for each question:
         {{'question': question, 'opt1':  option 1, 'opt2': option 2, 'opt3': option 3 'opt4': option 4, 'answer': correct option}}
-        every question should be unique question and have all four options along with answer and explanation.
+        every question should be unique question and have all four options along with answer and explanation of why the the answer is correct and also why other options are incorect.
         each question has only single correct answer. Be sure to make sure that the options contain answer and ensure that the answer is correct.
         and be extremely sure the question, options, and answer are correct, unique and relevant to the topic also makes sense along with correct explanation for the answer.
         Check the question and answer before submitting. Reduce mistakes and errors.the answer should be given in the form of opt1, opt2, opt3, opt4 NOT as the answer itself the answer should always be any one of 
@@ -40,10 +40,13 @@ class Question(LLMConfig):
         the following questions are already gnerated and should not be repeated:
         {current_Questions}
         remember that you are beeing used as a plugin in a program so be sure to return the output in the correct format as there are many errors of Invalid JSON format avoid that
+        some problems from previous generations are that the answer is not in the form of opt1, opt2, opt3, opt4 so be sure to return the answer in the correct format.
+        and for some questions the options are wrong or contain multiple answers and also for some the explanation is wrong and facts are not correct so be sure to check the question and answer before submitting.
+        some of the questions you have generated previously makes no sense or are incorrect and does not contain whole contex. CHECK BEFORE SUBMITTING.
         '''
         parser = JsonOutputParser(pydantic_object=Quiz)
         
-        for i in range(n):
+        for i in range(N):
             try:
                 prompt = PromptTemplate(
                     template="Answer the user query.\n{format_instructions}\n{query}\n",
@@ -120,11 +123,11 @@ flashcard WITHOUT ANY REPEATED QUESTIONS following the above instructions.'''
         
 # Q = Question()
 # print(Q.getQuestion('python programming'))
-f = FlashCards()
-x = f.getFlashCard('Python is a high-level, interpreted programming language. It is known for its simplicity and readability, making it an excellent choice for beginners. Python is versatile and can be used for a wide range of applications, including web development, data analysis, artificial intelligence, and scientific computing. Python uses an elegant syntax that allows developers to write clear and concise code. It also has a large standard library that provides ready-to-use modules and packages for common tasks. Python is an open-source language, which means that it is free to use and distribute. It is supported by a large and active community of developers who contribute to its growth and development. Python is a popular choice for both professional developers and hobbyists due to its ease of use and flexibility.', 1)
-for i in x:
-    print(i['question'])
-    print(i['answer'])
+# f = FlashCards()
+# x = f.getFlashCard('Python is a high-level, interpreted programming language. It is known for its simplicity and readability, making it an excellent choice for beginners. Python is versatile and can be used for a wide range of applications, including web development, data analysis, artificial intelligence, and scientific computing. Python uses an elegant syntax that allows developers to write clear and concise code. It also has a large standard library that provides ready-to-use modules and packages for common tasks. Python is an open-source language, which means that it is free to use and distribute. It is supported by a large and active community of developers who contribute to its growth and development. Python is a popular choice for both professional developers and hobbyists due to its ease of use and flexibility.', 1)
+# for i in x:
+#     print(i['question'])
+#     print(i['answer'])
 # x ={}
 # y = {'hell': 'opt1'}
 # for i in range(5):
