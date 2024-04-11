@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+    <div class="loginpage-container">
+        <img class="tp-pattern login-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+
+        <div class="login-container">
+            <div class="part1">
+                <div class="form">
+                    <h2>Login</h2>
+
+                    <form action="/login" method="post" class = "c-form">
+                        {{form.hidden_tag()}}
+                        <label for="username">{{form.username.label}}</label>
+                        {{form.username}}<br>
+                        <label for="password">{{form.password.label}}</label>
+                        {{form.password}}<br>
+                        {{form.submit(class = 'sbt-btn')}}
+                    </form>
+                </div>
+            </div>
+            <div class="part2">
+                <img src="{{ url_for('static', filename = 'images/login.jpg') }}" alt="">
+            </div>
+        </div>
+        
+        <img class="sp-pattern login-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+
+    </div>
+    
+{% endblock %}
+
+

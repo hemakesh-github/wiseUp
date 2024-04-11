@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="welcome-wrapper">
+        <img class="tp-pattern" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+        <div class="welcome">
+            <div class="welcome-content">
+                <h1>Welcome to wiseUp!</h1>
+                <p>Test your skills by taking quiz and practice topics using flash cards</p>
+                <a href="/topicChoose"><button class="btn btn-lgt">Take a Quiz</button></a>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename = 'images/home.jpg') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <img class="sp-pattern" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+    <div class="steps-wrapper">
+        <div class="steps">
+            <div class="step">
+                    <img src="{{ url_for('static', filename = 'images/s1.png') }}" alt="">
+                    <p>Click on Take a quiz</p>
+            </div>
+            <div class="step">
+                    <img src="{{ url_for('static', filename = 'images/s2.png') }}" alt="">
+                <p>Enter the topic and select dificulty level and click start</p>
+            </div>
+            <div class="step">
+                    <img src="{{ url_for('static', filename = 'images/s3.png') }}" alt="">
+                    <p>Submit the quiz after completing</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

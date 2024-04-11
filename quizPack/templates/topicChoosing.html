@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="topic-container">
+
+    <div class="topic-part1">
+        <img class="tp-pattern topic-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+        <div class="form tp-form">
+            <form action="" method="POST" class = "c-form">
+                <label for="topic">Enter topic for generating Quiz</label><br>
+                <input type="text" id = "topic" name = 'topic' placeholder="Enter topics..."><br>
+                <button id = "topic-btn" class="sbt-btn">Start Quiz</button>
+            </form>
+        </div>
+    </div>
+    <div class="topic-part2">
+        <img src="{{ url_for('static', filename = 'images/topicChosing.jpg') }}" alt="">
+    </div>
+    <img class="sp-pattern topic-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+
+</div>
+<script>
+questions = {}
+keys = []
+let getQuestions = () => {
+    let topic = document.getElementById('topic').value;
+    const formData = new FormData();
+    const questions = document.querySelector('.t-container');
+    const choose = document.querySelector('.topic-container');
+    const str = window.location.href;
+    const lastSlashIndex = str.lastIndexOf('/');
+    const next = str.slice(0,lastSlashIndex + 1) + 'q';
+
+    formData.append('topic', topic)
+    formData.append('diffLevel', )
+    console.log(formData)
+    fetch("/topicChoose", {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        return response.json()
+    }).then(questions => {
+        const keys = Object.keys(questions)
+        localStorage.setItem('myJsonData', JSON.stringify(questions));
+        // showQuestions(questions, keys)
+        window.location.href = next;
+    }).catch(error => {
+        console.log(error)
+    })
+}
+const t_btn = document.getElementById('topic-btn');
+t_btn.addEventListener('click', 
+(evt)=>{
+    evt.preventDefault()
+    console.log('clicked')
+    getQuestions()
+    // form.submit();
+})
+</script>
+{% endblock %}

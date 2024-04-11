@@ -1,0 +1,150 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container t-container">
+    <div class="t-banner">
+        <img class="tp-pattern q-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+    </div>
+    <div class="quiz-question-wrapper">
+        <div class="quiz-question">
+            <h2>Question</h2>
+            <div class="options">
+                <div class="opt1 opt " value = 'opt1'>Option 1</div>
+                <div class="opt2 opt " value = 'opt2'>Option 2</div>
+                <div class="opt3 opt " value = 'opt3'>Option 2</div>
+                <div class="opt4 opt " value = 'opt4'>Option 3</div>
+                <div class="btn-cont">
+                    <button class="btn prev">Prev</button>
+                    <form action="" method="POST">
+                        <button class="btn sub">Submit</button>
+                    </form>
+                    
+                    <button class="btn nxt ">Next</button>
+                </div>
+                
+            </div>    
+        </div>
+       
+        </div>
+    </div>
+    <img class="sp-pattern q-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+</div>
+<script>
+    let showQuestions = () => {
+        q = document.querySelector('.quiz-question h2');
+        opt1 = document.querySelector('.opt1');
+        opt2 = document.querySelector('.opt2');
+        opt3 = document.querySelector('.opt3');
+        opt4 = document.querySelector('.opt4');
+        options = document.querySelectorAll('.opt');
+        nxt = document.querySelector('.nxt')
+        prev = document.querySelector('.prev')
+        sub = document.querySelector('.sub')
+        const qs_str = localStorage.getItem('myJsonData');
+        qs = JSON.parse(qs_str);
+        keys = Object.keys(qs)
+        let q_c = 0
+        checkNext(q_c)
+        nxt.addEventListener('click', () => {
+        
+            if (q_c < keys.length){
+                q_c++;
+            }
+            console.log(q_c)
+            checkNext(q_c)
+
+            populateQuestions(q_c)
+            for(let j = 0; j < options.length; j++){
+                options[j].style.backgroundColor = ''
+            }
+            
+        })
+        prev.addEventListener('click', ()=> {
+            if (q_c !== 0){
+                q_c--;
+            }
+            checkNext = (q_c)
+
+            populateQuestions(q_c)
+            for(let j = 0; j < options.length; j++){
+                if (qs[keys[q_c]].chosenAnswer == options[j].attributes.value.value){
+                    console.log(qs[keys[q_c]].chosenAnswer)
+                    options[j].style.backgroundColor = 'blue'
+                }
+                else{
+                    options[j].style.backgroundColor = ''
+                }
+            }
+        })
+        populateQuestions(q_c)
+       
+        for(let i = 0; i < options.length; i++) {
+            options[i].addEventListener('click', () => {
+                for(let j = 0; j < options.length; j++){
+                    if (j == i){
+                        options[i].style.backgroundColor = 'blue';
+                        val = options[i].attributes.value;
+                        console.log(val.value);
+                        qs[keys[q_c]].chosenAnswer = val.value;
+                    }
+                    else{
+                        if (options[j].style.backgroundColor = 'blue'){
+                            options[j].style.backgroundColor = ''
+                        }
+                    }
+                }
+            })
+            
+        }
+
+        sub.addEventListener('click', (evt)=> {
+            evt.preventDefault()
+            console.log(qs);
+            formData = new FormData();
+            formData.append('questions', qs);
+            localStorage.setItem('UpdatesQs', JSON.stringify(qs));
+            fetch('/r', {
+                method: 'POST', // Specify POST method
+                headers: {
+                    'Content-Type': 'application/json' // Set content type for JSON data
+                },
+                body: JSON.stringify(qs) // Convert data to JSON string
+              })
+              .then(response => {
+                console.log(response)
+                return response.json()
+              }) // Parse JSON response (if applicable)
+              .then(data => {
+                console.log(data); // Handle successful response
+                localStorage.setItem('result', JSON.stringify(data));
+                window.location.href = '/r';
+              })
+              .catch(error => {
+                console.error('Error:', error); // Handle errors
+              });
+        })
+
+        
+        console.log(qs.question1);
+    }
+    checkNext = (q_c) => {
+        if (q_c === keys.length-1){
+            nxt.style.display = 'none'
+        }
+        else if(q_c === 0){
+            prev.style.display = 'none'
+        }
+        else{
+            nxt.style.display = 'block'
+            prev.style.display = 'block'
+        }
+    }
+    populateQuestions = (q_c) => {
+        q.innerHTML = qs[keys[q_c]].question;
+        opt1.innerHTML = qs[keys[q_c]].opt1;
+        opt2.innerHTML = qs[keys[q_c]].opt2;
+        opt3.innerHTML = qs[keys[q_c]].opt3;
+        opt4.innerHTML = qs[keys[q_c]].opt4;
+    }
+    showQuestions();
+</script>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container r-container">
+    <div class="t-banner">
+        <div class="user u-result">
+            <img src="{{ url_for('static', filename = 'images/user.jpg') }}" alt="">
+            <div class="details">
+                <h1>username</h1>
+                <h2>result: 0/10</h2>
+            </div>
+        </div>
+        <img class="tp-pattern q-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+    </div>
+    <div class="quiz-question-wrapper">
+        <div class="quiz-question">
+            <h2>Question</h2>
+            <div class="options">
+                <div class="opt1 opt" value = 'opt1'>Option 1</div>
+                <div class="opt2 opt"value = 'opt2'>Option 2</div>
+                <div class="opt3 opt" value = 'opt3'>Option 2</div>
+                <div class="opt4 opt" value = 'opt4'>Option 3</div>
+                <div class="btn-cont">
+                    <button class="btn prev">Prev</button>
+                    <a href="#explain"><button class="btn exp">Explanation</button></a>
+                    <button class="btn nxt ">Next</button>
+                </div>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="explanation" id = 'explain'>
+        <h2>Explanation</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+    </div>
+    <img class="sp-pattern r-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+</div>
+<script>
+    userAns = localStorage.getItem('UpdatesQs');
+    userAns = JSON.parse(userAns);
+    qs = localStorage.getItem('myJsonData');
+    qs = JSON.parse(qs);
+    result = localStorage.getItem('result');
+    result = JSON.parse(result);
+    keys = Object.keys(qs)
+
+
+    q = document.querySelector('.quiz-question h2');
+    opt1 = document.querySelector('.opt1');
+    opt2 = document.querySelector('.opt2');
+    opt3 = document.querySelector('.opt3');
+    opt4 = document.querySelector('.opt4');
+    options = document.querySelectorAll('.opt');
+    nxt = document.querySelector('.nxt')
+    prev = document.querySelector('.prev')
+    exp = document.querySelector('.exp')
+    explainBlock = document.querySelector('.explanation p')
+
+
+    let showQuestions = () => {
+        let q_c = 0
+        checkNext(q_c)
+        nxt.addEventListener('click', () => {
+            
+            console.log(q_c)            
+            if (q_c < keys.length){
+                q_c++;
+            }
+            checkNext(q_c)
+            console.log(q_c)  
+            populateQuestions(q_c)
+            resDisplay(q_c)
+        })
+        resDisplay(q_c)
+        populateQuestions(q_c)
+        prev.addEventListener('click', () => {
+            
+            if (q_c !== 0){
+                q_c--;
+            }
+            checkNext(q_c)
+            populateQuestions(q_c)
+            resDisplay(q_c)
+        })
+        exp.addEventListener('click', () => {
+        })
+        
+    }
+
+    resDisplay = (q_c) => {
+        for(let j = 0; j < options.length; j++){
+            console.log(userAns[keys[q_c]])
+            if(options[j].attributes.value.value === userAns[keys[q_c]]['chosenAnswer']){
+                if (result[keys[q_c]]['correct']){
+                    options[j].style.backgroundColor = 'green'
+                }
+                else{
+                    options[j].style.backgroundColor = 'red'
+                }
+            }
+            else{
+                options[j].style.backgroundColor = ''
+            }
+        }
+    }
+    checkNext = (q_c) => {
+        if (q_c === keys.length-1){
+            nxt.style.display = 'none'
+        }
+        else if(q_c === 0){
+            prev.style.display = 'none'
+        }
+        else{
+            nxt.style.display = 'block'
+            prev.style.display = 'block'
+        }
+    }
+    populateQuestions = (q_c) => {
+        q.innerHTML = qs[keys[q_c]].question;
+        opt1.innerHTML = qs[keys[q_c]].opt1;
+        opt2.innerHTML = qs[keys[q_c]].opt2;
+        opt3.innerHTML = qs[keys[q_c]].opt3;
+        opt4.innerHTML = qs[keys[q_c]].opt4;
+        explainBlock.innerText = result[keys[q_c]].explanation
+    }
+    showQuestions()
+</script>
+{% endblock %}

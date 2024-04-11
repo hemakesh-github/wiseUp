@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="page1">
+    <div class="question-container">
+        hello
+        <div class="question">
+            {{ question['question'] }}
+        </div>
+        <div class="options">
+            <div class="opt1">{{question['opt1']}}</div>
+            <div class="opt2">{{question['opt2']}}</div>
+            <div class="opt3">{{question['opt3']}}</div>
+            <div class="opt4">{{question['opt4']}}</div>
+        </div>
+    </div>
+    <div class="next">Next</div>
+    <div class="prev">Prev</div>
+</div>
+{% endblock %}

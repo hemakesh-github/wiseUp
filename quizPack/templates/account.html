@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div class="welcome-wrapper">
+        <img class="tp-pattern" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+        <div class="welcome">
+            <div class="welcome-content">
+                <div class="user">
+                    <img src="{{ url_for('static', filename = 'images/user.jpg') }}" alt="">
+                    <div class="details">
+                        <h1>username</h1>
+                    <p>Points: **</p>
+                    </div>
+                </div>
+            </div>
+            <div class="photo">
+                <img src="{{ url_for('static', filename = 'images/home.jpg') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="saved-questions-wrapper acc-tab">
+        <h2>Saved Questions</h2>
+        <div class="questions-list acc-row-cont">
+            <div class="question acc-row">
+                <span>Question 1</span>
+                <a href="#">view</a>
+            </div>
+            
+            <div class="question acc-row">
+                <span>Question 2..</span>
+                <a href="#">view</a>
+            </div>
+        
+        
+            <div class="question acc-row">
+                <span>Question 3..</span>
+                <a href="#">view</a>
+            </div>
+        
+        
+            <div class="question acc-row">
+                <span>Question 4..</span>
+                <a href="#">view</a>
+            </div>
+          
+        </div>
+    </div>
+    
+    <div class="user-info acc-tab">
+        <h2>Your information</h2>
+        <div class="info acc-row-cont">
+            <div class="info-item acc-row">
+                <span>username: xxxxxx</span>
+            </div>
+        
+        
+            <div class="info-item acc-row">
+                <span>email: XXXX</span>
+            </div>
+        </div>
+    </div>
+    <img class="sp-pattern" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+    
+</div>
+{% endblock %}
