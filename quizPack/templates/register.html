@@ -4,10 +4,10 @@
 
 
 
-    <div class="loginpage-container">
+    <div class="common-form-container">
         <img class="tp-pattern login-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
 
-        <div class="login-container">
+        <div class="common-cont">
             <div class="part1">
                 <div class="form">
                     <h1>Register</h1>
@@ -17,10 +17,30 @@
                         {{form.username}}
                         <label for="email">{{form.email.label}}</label>
                         {{form.email}}
+
                         <label for="password">{{form.password.label}}</label>
-                        {{form.password}}
+                        {% if form.password.errors %}
+                            {{ form.password }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <div class="error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password }}
+                        {% endif %}
                         {{form.checkPassword.label}}
-                        {{form.checkPassword}}
+                        {% if form.checkPassword.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.checkPassword.errors %}
+                                    <div class="error">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            {{ form.checkPassword }}
+
+                        {% else %}
+                            {{ form.checkPassword }}
+                        {% endif %}
                         {{form.submit(class = 'sbt-btn')}}
                     </form>
                 </div>

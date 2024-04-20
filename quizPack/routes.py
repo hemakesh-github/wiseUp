@@ -1,23 +1,22 @@
-from copy import copy
-from flask import jsonify, render_template, request, url_for, session
-from flask_login import logout_user
+from flask import jsonify, redirect, render_template, request, url_for, session
+from flask_login import login_required, login_user, logout_user, current_user
 from quizPack import app, login_manager, bcrypt, db
 from quizPack import utils
 from quizPack.forms import LoginForm, RegisterForm
-from quizPack.models import User
+from quizPack.models import User, SavedQuestions
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 @app.route("/", methods = ['POST', 'GET'])
 @app.route("/home", methods = ['POST', 'GET'])
 def home():
     if request.method == 'POST':
-        q = utils.Question()
-        question = q.getQuestion()
-        return render_template("quiz.html", question = question)
+        return render_template("quiz.html")
     return render_template("home.html")
 
-@login_manager.user_loader
 @app.route("/login", methods = ['POST', 'GET'])
 def login():
     form = LoginForm()
@@ -26,37 +25,39 @@ def login():
         password = form.password.data
         user = User.query.filter_by(username = username).first()
         if user and bcrypt.check_password_hash(user.password, password):
-            return render_template('index.html')
+            login_user(user)
+            return render_template('home.html')
     return render_template("login.html", form = form)
 
 @app.route("/register", methods = ['POST', 'GET'])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        print("hello")
         username = form.username.data
         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         email = form.email.data
         db.session.add(User(username = username, email = email, password = password))
         db.session.commit()
-        return render_template(url_for('login'))
-    print("h")
+        return redirect(url_for('login'))
     return render_template("register.html", form = form)
 
+
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
-    return render_template('logout.html')
+    return render_template('home.html')
 
-@app.route('/topicChoose', methods = ['POST', 'GET'])
+
+@app.route('/topicChoose', methods=['POST', 'GET'])
+@login_required
 def ChoseTopic():
     if request.method == 'POST':
         topic = request.form['topic']
         diffLevel = request.form['diffLevel']
-        print(diffLevel)
+        print(topic, diffLevel)
         q = utils.Question()
-        questions = q.getQuestion(topic)
-        print(questions['question1'].keys())
+        questions = q.getQuestion(topic, diffLevel)
         answers = {}
         q_no_ans = questions
         for i in questions.keys():
@@ -66,36 +67,67 @@ def ChoseTopic():
             del q_no_ans[i]['answer']
             del q_no_ans[i]['explanation']
         session['answers'] = answers
-
         print(q_no_ans['question1'].keys())
         return jsonify(q_no_ans)
-        # return render_template('quizQuestion.html', nav = False, questions = jsonify(questions))
+    
     return render_template('topicChoosing.html')
 
 @app.route('/account')
+@login_required
 def account():
-
-    return render_template('account.html')
+    savedQs = SavedQuestions.query.filter_by(user_id = current_user.id).all()
+    filename = current_user.profile
+    return render_template('account.html', savedQs = savedQs, filename = filename)
 
 @app.route('/q')
+@login_required
 def q():
     return render_template('quizQuestion.html', nav = False)
 
-@app.route('/r', methods = ['POST', 'GET'])
-def r():
+@app.route('/result', methods = ['POST', 'GET'])
+@login_required
+def result():
     if request.method == 'POST':
         points = 0
         user_answers = dict(request.get_json())
         answers = session['answers']
         for i in user_answers.keys():
-            print('r')
-            print(answers.keys())
-            print(answers[i])
             if 'chosenAnswer' in user_answers[i].keys() and user_answers[i]['chosenAnswer'] == answers[i]['answer']:
                 answers[i]['correct'] = True
                 points += 1
             else:
                 answers[i]['correct'] = False
         answers['points'] = points
+        user = current_user
+        user.points += points
+        db.session.commit()
+        user_id = current_user.id
+        for i in user_answers.keys():
+            print(i)
+            db.session.add(SavedQuestions(user_id = user_id, question = user_answers[i]['question'], option1 = user_answers[i]['opt1'], option2 = user_answers[i]['opt2'], option3 = user_answers[i]['opt3'], option4 = user_answers[i]['opt4'], answer = answers[i]['answer'], explanation = answers[i]['explanation']))
+        db.session.commit()
         return jsonify(answers)
-    return render_template('quizResult.html', nav = False)
+    return render_template('quizResult.html', nav=False)
+
+
+@app.route('/savedQ', methods = ['POST', 'GET'])
+def savedQuestions():
+    if request.method == 'POST':
+        id = request.form['q-id']
+        q = SavedQuestions.query.filter_by(id = id).first()
+        return jsonify({'question': q.question, 'opt1': q.option1, 'opt2': q.option2, 'opt3': q.option3, 'opt4': q.option4, 'answer': q.answer, 'explanation': q.explanation})
+    return render_template('savedQ.html')
+
+@login_required
+@app.route('/changeDP', methods = ['POST', 'GET'])
+def changeDP():
+    if request.method == 'POST':
+        file = request.files['file']
+        ext = file.filename.split('.')[-1]
+        filename = 'user'+str(current_user.id)+'.'+ext
+        file.save('quizPack/static/images/' + filename)
+        user = current_user
+        user.profile = filename
+        db.session.commit()
+        return jsonify({'flag': True, 'filename': filename})
+    return render_template('account.html')

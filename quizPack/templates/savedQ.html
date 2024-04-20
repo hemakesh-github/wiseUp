@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container r-container">
+    <div class="t-banner">
+        <div class="user u-result">
+            <div class="user-pic">
+                <div class="inp-container">
+                    <label>
+                        <img src="{{ url_for('static', filename = 'images/edit.png') }}" alt="">
+                    </label>
+                </div>
+            </div>  
+            <div class="details">
+                <h1>username</h1>
+            </div>
+        </div>
+        <img class="tp-pattern q-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
+    </div>
+
+    
+    <div class="quiz-question-wrapper">
+        <div class="quiz-question">
+            <h2>Question</h2>
+            <div class="options">
+                <div class="opt1 opt" value = 'opt1'>Option 1</div>
+                <div class="opt2 opt"value = 'opt2'>Option 2</div>
+                <div class="opt3 opt" value = 'opt3'>Option 2</div>
+                <div class="opt4 opt" value = 'opt4'>Option 3</div>
+                <div class="btn-cont">
+                    <a href="{{ url_for('account') }}"><button class="btn prev">Back</button></a>
+                    <a href="#explain"><button class="btn exp">Explanation</button></a>
+                </div>
+                
+            </div>    
+        </div>
+    </div>
+    <div class="explanation" id = 'explain'>
+        <h2>Explanation</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+    </div>
+
+    <img class="sp-pattern r-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
+</div>
+<script>
+    
+    q = document.querySelector('.quiz-question h2');
+    opt1 = document.querySelector('.opt1');
+    opt2 = document.querySelector('.opt2');
+    opt3 = document.querySelector('.opt3');
+    opt4 = document.querySelector('.opt4');
+    options = document.querySelectorAll('.opt')
+    exp = document.querySelector('.exp')
+    explainBlock = document.querySelector('.explanation p')
+    sQ = localStorage.getItem('s-question');
+    sQ = JSON.parse(sQ);
+    console.log(q)
+    console.log(sQ)
+
+    
+
+
+    resDisplay = () => {
+        for(let j = 0; j < options.length; j++){
+            if(options[j].attributes.value.value === sQ.answer){
+                options[j].style.backgroundColor = 'green'
+            }
+            else{
+                options[j].style.backgroundColor = ''
+            }
+        }
+    }
+    
+    populateQuestions = () => {
+        
+        q.innerHTML = sQ.question;
+        opt1.innerHTML = sQ.opt1;
+        opt2.innerHTML = sQ.opt2;
+        opt3.innerHTML = sQ.opt3;
+        opt4.innerHTML = sQ.opt4;
+        explainBlock.innerText = sQ.explanation;
+        resDisplay()
+    }
+    populateQuestions()
+
+</script>
+{% endblock %}

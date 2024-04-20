@@ -3,7 +3,13 @@
 <div class="container r-container">
     <div class="t-banner">
         <div class="user u-result">
-            <img src="{{ url_for('static', filename = 'images/user.jpg') }}" alt="">
+            <div class="user-pic">
+                <div class="inp-container">
+                    <label>
+                        <img src="{{ url_for('static', filename = 'images/edit.png') }}" alt="">
+                    </label>
+                </div>
+            </div>
             <div class="details">
                 <h1>username</h1>
                 <h2>result: <span>0</span>/10</h2>

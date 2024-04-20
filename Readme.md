@@ -16,3 +16,8 @@ My project has basically two functionalities
 ## What we learned
 
 ## What's next for wiseUp
+
+
+
+##16-04-2024
+have to do profile pic upload, flash card templates and routes, save btn functionality

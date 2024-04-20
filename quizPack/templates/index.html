@@ -13,9 +13,17 @@
     
     {% if nav | default(true, true) %}
     <nav>
+        <ul id = 'logo'>
+            <li>
+                <a href="{{url_for('home')}}">
+                    <img  src="{{ url_for('static', filename = 'images/logo.png') }}" alt="">
+                </a>
+            </li>
+        </ul>
         <ul>
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="/account"><img id = 'user-dp'src="{{ url_for('static', filename = 'images/' + current_user.profile)}}" alt=""></a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>

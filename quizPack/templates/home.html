@@ -6,8 +6,13 @@
         <div class="welcome">
             <div class="welcome-content">
                 <h1>Welcome to wiseUp!</h1>
-                <p>Test your skills by taking quiz and practice topics using flash cards</p>
-                <a href="/topicChoose"><button class="btn btn-lgt">Take a Quiz</button></a>
+                <p>Test your skills by taking quiz and practice topics using flash cards</p>    
+                <form action="/topicChoose" method="get">
+                    <button type="submit" class="btn btn-lgt">Take a Quiz</button>
+                </form>
+                <form action="/topicChoose" method="get">
+                    <button type="submit" class="btn btn-lgt">Generate Flash Cards</button>
+                </form>
             </div>
             <div class="photo">
                 <img src="{{ url_for('static', filename = 'images/home.jpg') }}" alt="">

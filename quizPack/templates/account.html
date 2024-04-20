@@ -1,15 +1,25 @@
 {% extends "index.html" %}
 {% block content %}
-<div class="container">
+<div class="container acc-cont">
     <div class="welcome-wrapper">
         <img class="tp-pattern" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
         <div class="welcome">
             <div class="welcome-content">
                 <div class="user">
-                    <img src="{{ url_for('static', filename = 'images/user.jpg') }}" alt="">
+                    <div class="user-pic">
+                        <div class="inp-container">
+                            <label for="file-upload">
+                                <img src="{{ url_for('static', filename = 'images/edit.png') }}" alt="">
+                                <input type="file" id = 'file-upload' class="upload">
+                            </label>
+                            <!-- <input type="image" src="{{ url_for('static', filename = 'images/edit.png') }}" alt=""> -->
+                            
+                        </div>
+                    </div>
+                    
                     <div class="details">
-                        <h1>username</h1>
-                    <p>Points: **</p>
+                        <h1>{{ current_user.username }}</h1>
+                    <p>Points: {{ current_user.points }}</p>
                     </div>
                 </div>
             </div>
@@ -20,29 +30,15 @@
     </div>
     <div class="saved-questions-wrapper acc-tab">
         <h2>Saved Questions</h2>
-        <div class="questions-list acc-row-cont">
+        <div class="questions-list acc-row-cont">            
+            {% if savedQs %}
+            {% for i in range(savedQs|length)%}
             <div class="question acc-row">
-                <span>Question 1</span>
-                <a href="#">view</a>
+                <span>{{ savedQs[i]['question'] }}</span>
+                <a href="{{ url_for('savedQuestions')}}" id = 'view' q-id = '{{savedQs[i]["id"]}}'>view</a>
             </div>
-            
-            <div class="question acc-row">
-                <span>Question 2..</span>
-                <a href="#">view</a>
-            </div>
-        
-        
-            <div class="question acc-row">
-                <span>Question 3..</span>
-                <a href="#">view</a>
-            </div>
-        
-        
-            <div class="question acc-row">
-                <span>Question 4..</span>
-                <a href="#">view</a>
-            </div>
-          
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
     
@@ -50,16 +46,67 @@
         <h2>Your information</h2>
         <div class="info acc-row-cont">
             <div class="info-item acc-row">
-                <span>username: xxxxxx</span>
+                <span>username: {{ current_user.username }}</span>
             </div>
         
         
             <div class="info-item acc-row">
-                <span>email: XXXX</span>
+                <span>email: {{ current_user.email }}</span>
             </div>
         </div>
     </div>
     <img class="sp-pattern" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
     
 </div>
+<script>
+    let view = document.getElementById('view');
+    view.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        console.log(view.getAttribute('q-id'));
+        let formData = new FormData();
+        formData.append('q-id', view.getAttribute('q-id'));
+        fetch("/savedQ", {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            return response.json()
+        }).then(data => {
+            console.log(data);
+            
+            localStorage.setItem('s-question', JSON.stringify(data));
+            window.location.href = '/savedQ';
+        }).catch(error => {
+            console.log(error);
+        })
+    })
+
+    const dpUpload = (file) => {
+        let formData = new FormData();
+        formData.append('file', file);
+        fetch('/changeDP', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            Updatedp(data['filename'])
+            console.log(data);
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    let file = document.getElementById('file-upload');
+    file.addEventListener('change', (evt) => {
+        console.log(file.files[0]);
+        dpUpload(file.files[0]);
+    })
+
+    const Updatedp = (filename) =>{
+        console.log(filename);
+        let dp = document.querySelector('.user-pic');
+        dp.style.backgroundImage = `url(static/images/${filename})`;
+    }
+    Updatedp('{{ current_user.profile}}')
+</script>
 {% endblock %}

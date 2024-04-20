@@ -1,14 +1,24 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Email
+from wtforms.validators import DataRequired, EqualTo, Email, ValidationError
 import email_validator
+from .models import User
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+    def validate_email(self, username):
+        user = User.query.filter_by(email = User.data).first()
+        if user == None:
+            raise ValidationError('User does not exist')
     # def validate(self, username):
     #     #to do
     #     return True
+
+    def __repr__(self):
+        return f"username: {self.username}"
     
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -18,6 +28,15 @@ class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Register')
 
+    def validate_email(self, email):
+        user = User.query.filter_by(email = email.data).first()
+        if user != None:
+            raise ValidationError('The email is already registered')
+        
+    def validate_username(self, username):
+        user = User.query.filter_by(email = username.data).first()
+        if user != None:
+            raise ValidationError('The username is already taken')
 
     def __repr__(self):
         return f"RegisterForm('{self.username}', '{self.email}')"
