@@ -670,9 +670,22 @@ nav #user-dp{
     visibility: hidden;
 }
 
-{
-    height: 40px;
-    width: 40px;
-    object-fit: cover;
-    border-radius: 50%;
+
+.q-container i{
+    font-size: 20px;
+}
+
+.q-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fa-solid{
+    color: blue;
+}
+
+.done{
+    width: fit-content;
+    align-self: center;
 }

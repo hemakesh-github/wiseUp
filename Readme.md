@@ -19,5 +19,12 @@ My project has basically two functionalities
 
 
 
-##16-04-2024
+## 16-04-2024
 have to do profile pic upload, flash card templates and routes, save btn functionality
+
+## 20-04-2024
+added profile-pic upload and save btn
+
+# to do
+design and implement flash card system
+and also clean up the code base

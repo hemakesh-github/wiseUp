@@ -58,15 +58,12 @@ class Question(LLMConfig):
                 # print(r)
                 # print(r.keys())
                 if self.outputCheck(r):
-                    print('f')
-                    print(len(self.finalResult))
                     self.finalResult['question'+str(i+1)] = dict(r)
                     if len(self.finalResult) == N:
                         break
                 else:
                     self.getQuestion(topic, self.finalResult, N-len(self.finalResult))
             except Exception as e:
-                print(e)
                 traceback.print_exc()
                 new_prompt =rf'''The previous question raised {e} so please generate a new question'''
                 self.getQuestion(topic,str(self.finalResult) + new_prompt, N-len(self.finalResult))
@@ -74,8 +71,6 @@ class Question(LLMConfig):
             
     def outputCheck(self,r):
         if r['answer'] not in ['opt1', 'opt2', 'opt3', 'opt4']:
-            print(r['answer'])
-            # time.sleep(2)
             return False
         return True
         
@@ -89,8 +84,7 @@ class FlashCards(LLMConfig):
         super().__init__()
         self.finalResult = {}
         
-        
-        
+
     def getFlashCard(self, context, difLevel = 1):
         q = rf'''
 You are a teacher and you are preparing flashcards for your students. You want to create flashcards from the 
@@ -114,10 +108,8 @@ flashcard WITHOUT ANY REPEATED QUESTIONS following the above instructions.'''
                 )
             chain = prompt | self.llm | parser
             r = chain.invoke({"query": q})
-            print(r)
             return r
         except Exception as e:
-            print(e)
             self.getFlashCard(context, difLevel)
     
         

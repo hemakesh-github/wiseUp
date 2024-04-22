@@ -55,7 +55,6 @@ def ChoseTopic():
     if request.method == 'POST':
         topic = request.form['topic']
         diffLevel = request.form['diffLevel']
-        print(topic, diffLevel)
         q = utils.Question()
         questions = q.getQuestion(topic, diffLevel)
         answers = {}
@@ -67,9 +66,7 @@ def ChoseTopic():
             del q_no_ans[i]['answer']
             del q_no_ans[i]['explanation']
         session['answers'] = answers
-        print(q_no_ans['question1'].keys())
         return jsonify(q_no_ans)
-    
     return render_template('topicChoosing.html')
 
 @app.route('/account')
@@ -101,11 +98,6 @@ def result():
         user = current_user
         user.points += points
         db.session.commit()
-        user_id = current_user.id
-        for i in user_answers.keys():
-            print(i)
-            db.session.add(SavedQuestions(user_id = user_id, question = user_answers[i]['question'], option1 = user_answers[i]['opt1'], option2 = user_answers[i]['opt2'], option3 = user_answers[i]['opt3'], option4 = user_answers[i]['opt4'], answer = answers[i]['answer'], explanation = answers[i]['explanation']))
-        db.session.commit()
         return jsonify(answers)
     return render_template('quizResult.html', nav=False)
 
@@ -131,3 +123,17 @@ def changeDP():
         db.session.commit()
         return jsonify({'flag': True, 'filename': filename})
     return render_template('account.html')
+
+
+@login_required
+@app.route('/saveQuestion', methods = ['POST', 'GET'])
+def saveQuestion():
+    if request.method == 'POST':
+        questions = request.get_json()
+        user_id = current_user.id
+        answers = session['answers']
+        for i in questions.keys():
+            db.session.add(SavedQuestions(user_id = user_id, question = questions[i]['question'], option1 = questions[i]['opt1'], option2 = questions[i]['opt2'], option3 = questions[i]['opt3'], option4 = questions[i]['opt4'], answer = answers[i]['answer'], explanation = answers[i]['explanation']))
+        db.session.commit()
+        return jsonify({'flag': True})
+    return render_template('saveQuestion.html')
