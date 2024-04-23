@@ -137,3 +137,8 @@ def saveQuestion():
         db.session.commit()
         return jsonify({'flag': True})
     return render_template('saveQuestion.html')
+
+
+@app.route("/flashcard")
+def flashcard():
+    return render_template('flashCardCon.html')

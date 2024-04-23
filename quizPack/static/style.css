@@ -689,3 +689,24 @@ nav #user-dp{
     width: fit-content;
     align-self: center;
 }
+
+#context{
+    width: 100%;
+}
+
+.f-form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.f-form button{
+    width: 120px;
+    align-self: center;
+}
+
+.diff-level-opt{
+    align-self: center;
+}
