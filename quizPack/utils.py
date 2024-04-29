@@ -91,7 +91,7 @@ You are a teacher and you are preparing flashcards for your students. You want t
 text given and you should NOT USE ANY KNOWLEDGE OUTSIDE THE PROVIDED TEXT.  text: {context} and the difficulty
 level of {difLevel} out of 5. The following should be the structure for each flashcard:
 {{'question': question, 'answer': answer}}
-BE SURE NOT TO USE ANY KNOWLEDGE OUTSIDE THE PROVIDED TEXT. The answer should be the correct answer along with 
+BE SURE NOT TO USE ANY KNOWLEDGE OUTSIDE THE PROVIDED TEXT.Generate atleast 3 questions and the maximum of 20 The answer should be the correct answer along with 
 the explanation. The answer can be of any length. Be sure to make sure that the question and answer are correct, 
 unique and one can answer from reading the text, also makes sense along with correct explanation for the answer.
 Check the question and answer before submitting. Reduce mistakes and errors. Be sure to make sure that the 

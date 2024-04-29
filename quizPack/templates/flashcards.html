@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="flash-cards-container">
+    <div class="flash-cards">
+    </div>
+    <button class="btn back">Go Back</button>
+</div>
+
+
+<script>
+    function convertToSingleList(data) {
+        if (Array.isArray(data)) {
+            return data; 
+        } else {
+            return [data]; 
+        }
+    }
+    let viewAns = document.querySelector('.flash-ques a');
+    let ans = document.querySelector('.flash-ans');
+    let myList = localStorage.getItem('flashcards');
+    q = convertToSingleList(JSON.parse(myList));
+    let back = document.querySelector('.back');
+    myList = q;
+    myList.forEach(item => {
+        const flashCard = document.createElement('div');
+        flashCard.classList.add('flash-card');
+
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('flash-ques');
+        questionDiv.innerHTML = `<span>${item.question}</span><a href="#" onclick="toggleAnswer(this)">Show<br>Answer</a>`;
+
+        const answerDiv = document.createElement('div');
+        answerDiv.classList.add('flash-ans');
+        answerDiv.textContent = item.answer;
+
+        flashCard.appendChild(questionDiv);
+        flashCard.appendChild(answerDiv);
+        const container = document.querySelector('.flash-cards');
+        container.appendChild(flashCard);
+    });
+    let ansFlag = false;
+    function toggleAnswer(anchor) {
+        const ans = anchor.parentElement.nextElementSibling;
+        if (!ansFlag){
+            anchor.innerHTML = 'Hide<br>Answer';
+            ans.classList.toggle('show-flash-ans');
+            ansFlag = true;
+        } else {
+            ans.classList.remove('show-flash-ans');
+            anchor.innerHTML = 'Show<br>Answer';
+            ansFlag = false;
+        }
+    }
+
+    back.addEventListener('click', () => {
+        localStorage.clear()
+        window.location.href = '/flashcard';
+    });
+</script>
+{% endblock %}

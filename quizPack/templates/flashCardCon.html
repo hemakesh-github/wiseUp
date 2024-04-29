@@ -7,9 +7,9 @@
         <img class="tp-pattern topic-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
         <div class="form tp-form">
             <form action="" method="POST" class = ".t-form f-form">
-                <label for="context">Enter topic for generating Quiz</label><br>
+                <label for="context">Enter Context for generating</label><br>
                 <textarea name="context" id="context" cols="30" rows="10"></textarea>
-                <label for="diff-level">Choose Difficulty Level</label><br>
+                <label for="diff-level">Choose Difficulty Level</label>
                 <div class="diff-level-opt">
                     <div class="o">
                         <input type="radio" id="d-opt" name="options" value="1">
@@ -42,7 +42,7 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select><br> -->
-                <button id = "topic-btn" class="sbt-btn">Start Quiz</button>
+                <button id = "topic-btn" class="sbt-btn">Generate</button>
             </form>
         </div>
     </div>
@@ -52,48 +52,55 @@
     <img class="sp-pattern topic-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
 
 </div>
+<div class="loading">
+    <div class="load"></div>
+    <div class="loader">
+        Generating...
+
+    </div>  
+</div>
 <script>
 questions = {}
 keys = []
+const load = document.querySelector(".loading");
+const loader = document.querySelector(".loader");
 let getQuestions = () => {
-    let topic = document.getElementById('topic').value;
-    checkTopic(topic);
+    let context = document.getElementById('context').value;
+    checkTopic(context);
     const formData = new FormData();
-    const questions = document.querySelector('.t-container');
-    const choose = document.querySelector('.topic-container');
-    const str = window.location.href;
-    const lastSlashIndex = str.lastIndexOf('/');
-    const next = str.slice(0,lastSlashIndex + 1) + 'q';
-    const diffLevel = getDiff();
-    formData.append('topic', topic)
+    diffLevel = 1;
+    try{
+        diffLevel = getDiff();
+    }catch (e){
+    }
+    
+    formData.append('context', context)
     formData.append('diffLevel', diffLevel)
-    console.log(formData)
-    fetch("/topicChoose", {
+    load.style.display = "flex"
+    fetch("/flashcard", {
         method: 'POST',
         body: formData
     }).then(response => {
         return response.json()
-    }).then(questions => {
-        const keys = Object.keys(questions)
-        localStorage.setItem('myJsonData', JSON.stringify(questions));
-        // showQuestions(questions, keys)
-        window.location.href = next;
+    }).then(flashcards => {
+        const keys = Object.keys(flashcards)
+        localStorage.setItem('flashcards', JSON.stringify(flashcards));
+        load.style.display = "none"
+        window.location.href = "/flashCardQues";
     }).catch(error => {
-        console.log(error)
+        alert("Error occured while generating flashcards")
     })
 }
-const t_btn = document.getElementById('topic-btn');
-t_btn.addEventListener('click', 
+const c_btn = document.getElementById('topic-btn');
+c_btn.addEventListener('click', 
 (evt)=>{
-    evt.preventDefault()
+    evt.preventDefault();
     console.log('clicked')
     getQuestions()
-    // form.submit();
 })
 const getDiff = () => {
     const options = document.querySelectorAll('d-opt');
     let selectedValue = document.querySelector('input[name="options"]:checked').value;
-    console.log(selectedValue) 
     return selectedValue;
 }
 

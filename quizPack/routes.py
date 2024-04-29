@@ -36,6 +36,7 @@ def register():
         username = form.username.data
         password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         email = form.email.data
+        
         db.session.add(User(username = username, email = email, password = password))
         db.session.commit()
         return redirect(url_for('login'))
@@ -139,6 +140,16 @@ def saveQuestion():
     return render_template('saveQuestion.html')
 
 
-@app.route("/flashcard")
+@app.route("/flashcard", methods = ['POST', 'GET'])
 def flashcard():
+    if request.method == 'POST':
+        context = request.form['context']
+        diffLevel = request.form['diffLevel']
+        f = utils.FlashCards()
+        flashcards = f.getFlashCard(context, diffLevel)
+        return jsonify(flashcards)
     return render_template('flashCardCon.html')
+
+@app.route("/flashCardQues")
+def flashCardQues():
+    return render_template('flashcards.html')

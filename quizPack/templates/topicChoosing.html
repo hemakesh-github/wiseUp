@@ -52,9 +52,18 @@
     <img class="sp-pattern topic-sp" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
 
 </div>
+<div class="loading">
+    <div class="load"></div>
+    <div class="loader">
+        Generating...
+
+    </div>  
+</div>
 <script>
 questions = {}
 keys = []
+const load = document.querySelector(".loading");
+const loader = document.querySelector(".loader");
 let getQuestions = () => {
     let topic = document.getElementById('topic').value;
     checkTopic(topic);
@@ -68,6 +77,7 @@ let getQuestions = () => {
     formData.append('topic', topic)
     formData.append('diffLevel', diffLevel)
     console.log(formData)
+    load.style.display = "flex"
     fetch("/topicChoose", {
         method: 'POST',
         body: formData
@@ -77,6 +87,7 @@ let getQuestions = () => {
         const keys = Object.keys(questions)
         localStorage.setItem('myJsonData', JSON.stringify(questions));
         // showQuestions(questions, keys)
+        load.style.display = "none"
         window.location.href = next;
     }).catch(error => {
         console.log(error)

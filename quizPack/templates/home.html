@@ -7,12 +7,12 @@
             <div class="welcome-content">
                 <h1>Welcome to wiseUp!</h1>
                 <p>Test your skills by taking quiz and practice topics using flash cards</p>    
-                <form action="/topicChoose" method="get">
-                    <button type="submit" class="btn btn-lgt">Take a Quiz</button>
-                </form>
-                <form action="/topicChoose" method="get">
+                
+                <a href="/topicChoose"><button type="submit" class="btn btn-lgt">Take a Quiz</button>
+                </a>
+                <a href="/flashcard" >
                     <button type="submit" class="btn btn-lgt">Generate Flash Cards</button>
-                </form>
+                </a>
             </div>
             <div class="photo">
                 <img src="{{ url_for('static', filename = 'images/home.jpg') }}" alt="">
@@ -21,6 +21,7 @@
     </div>
     <img class="sp-pattern" src="{{ url_for('static', filename = 'images/sp.svg') }}" alt="">
     <div class="steps-wrapper">
+        <h1>For Quiz</h1>
         <div class="steps">
             <div class="step">
                     <img src="{{ url_for('static', filename = 'images/s1.png') }}" alt="">
@@ -35,6 +36,19 @@
                     <p>Submit the quiz after completing</p>
             </div>
 
+        </div>
+    </div>
+    <div class="steps-wrapper flashcard-step-wrapper">
+        <h1>For Flashcards</h1>
+        <div class="steps f-steps">
+            <div class="step">
+                    <img src="{{ url_for('static', filename = 'images/s1.png') }}" alt="">
+                    <p>Click on Generate flash cards</p>
+            </div>
+            <div class="step">
+                    <img src="{{ url_for('static', filename = 'images/s2.png') }}" alt="">
+                <p>Enter the text and select dificulty level and click Generate</p>
+            </div>
         </div>
     </div>
 </div>
