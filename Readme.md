@@ -17,8 +17,8 @@ My project has basically two functionalities
 
 ## What's next for wiseUp
 
-<iframe src="https://scribehow.com/embed/Navigate_and_take_a_quiz_using_interactive_web_platform__D06dz2KUS9iDBKJ9Z04Beg?skipIntro=true" width="100%" height="640" allowfullscreen frameborder="0"></iframe>
-
+## USER MANUAL : 
+<https://scribehow.com/shared/Navigate_and_take_a_quiz_using_interactive_web_platform__D06dz2KUS9iDBKJ9Z04Beg>
 ## 16-04-2024
 have to do profile pic upload, flash card templates and routes, save btn functionality
 
@@ -28,3 +28,7 @@ added profile-pic upload and save btn
 # to do
 design and implement flash card system
 and also clean up the code base
+
+<div>
+<iframe src="https://scribehow.com/embed/Navigate_and_take_a_quiz_using_interactive_web_platform__D06dz2KUS9iDBKJ9Z04Beg?skipIntro=true" width="100%" height="640" allowfullscreen frameborder="0"></iframe>
+</div>
