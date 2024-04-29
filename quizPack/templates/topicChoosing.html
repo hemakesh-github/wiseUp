@@ -76,7 +76,6 @@ let getQuestions = () => {
     const diffLevel = getDiff();
     formData.append('topic', topic)
     formData.append('diffLevel', diffLevel)
-    console.log(formData)
     load.style.display = "flex"
     fetch("/topicChoose", {
         method: 'POST',
@@ -90,21 +89,19 @@ let getQuestions = () => {
         load.style.display = "none"
         window.location.href = next;
     }).catch(error => {
-        console.log(error)
+        alert("error occured")
     })
 }
 const t_btn = document.getElementById('topic-btn');
 t_btn.addEventListener('click', 
 (evt)=>{
     evt.preventDefault()
-    console.log('clicked')
     getQuestions()
     // form.submit();
 })
 const getDiff = () => {
     const options = document.querySelectorAll('d-opt');
     let selectedValue = document.querySelector('input[name="options"]:checked').value;
-    console.log(selectedValue) 
     return selectedValue;
 }
 

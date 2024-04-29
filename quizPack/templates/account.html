@@ -62,7 +62,6 @@
     let view = document.getElementById('view');
     view.addEventListener('click', (evt) => {
         evt.preventDefault();
-        console.log(view.getAttribute('q-id'));
         let formData = new FormData();
         formData.append('q-id', view.getAttribute('q-id'));
         fetch("/savedQ", {
@@ -71,11 +70,10 @@
         }).then(response => {
             return response.json()
         }).then(data => {
-            console.log(data);
             localStorage.setItem('s-question', JSON.stringify(data));
             window.location.href = '/savedQ';
         }).catch(error => {
-            console.log(error);
+            alert("error occured")
         })
     })
 
@@ -89,20 +87,17 @@
             return response.json();
         }).then(data => {
             Updatedp(data['filename'])
-            console.log(data);
         }).catch(error => {
-            console.log(error);
+            alert("Error occured")
         })
     }
 
     let file = document.getElementById('file-upload');
     file.addEventListener('change', (evt) => {
-        console.log(file.files[0]);
         dpUpload(file.files[0]);
     })
 
     const Updatedp = (filename) =>{
-        console.log(filename);
         let dp = document.querySelector('.user-pic');
         dp.style.backgroundImage = `url(static/images/${filename})`;
     }

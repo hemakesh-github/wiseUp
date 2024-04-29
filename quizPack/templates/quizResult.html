@@ -12,7 +12,7 @@
             </div>
             <div class="details">
                 <h1>username</h1>
-                <h2>result: <span>0</span>/10</h2>
+                <h2>result: <span>0</span>/5</h2>
             </div>
         </div>
         <img class="tp-pattern q-tp" src="{{ url_for('static', filename = 'images/tp.svg') }}" alt="">
@@ -77,12 +77,10 @@
         checkNext(q_c)
         nxt.addEventListener('click', () => {
             
-            console.log(q_c)            
             if (q_c < keys.length){
                 q_c++;
             }
             checkNext(q_c)
-            console.log(q_c)  
             populateQuestions(q_c)
             resDisplay(q_c)
             
@@ -107,7 +105,6 @@
 
     resDisplay = (q_c) => {
         for(let j = 0; j < options.length; j++){
-            console.log(userAns[keys[q_c]])
             if(options[j].attributes.value.value === userAns[keys[q_c]]['chosenAnswer']){
                 if (result[keys[q_c]]['correct']){
                     options[j].style.backgroundColor = 'green'
@@ -148,7 +145,6 @@
             s.classList.remove('fa-solid')
             s.classList.add('fa-regular')
         }
-        console.log(result)
     }
     showQuestions()
     const save = (s, q_c) => {
@@ -176,12 +172,10 @@
             body: JSON.stringify(savedQuestions) // Convert data to JSON string
           })
           .then(response => {
-            console.log(response)
             localStorage.clear()
             return response.json()
           }) // Parse JSON response (if applicable)
           .then(data => {
-            console.log(data); // Handle successful response
             window.location.href = '/home';
           })
           .catch(error => {

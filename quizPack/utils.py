@@ -55,8 +55,7 @@ class Question(LLMConfig):
                 )
                 chain = prompt | self.llm | parser
                 r = chain.invoke({"query": q})
-                # print(r)
-                # print(r.keys())
+              
                 if self.outputCheck(r):
                     self.finalResult['question'+str(i+1)] = dict(r)
                     if len(self.finalResult) == N:
@@ -112,16 +111,3 @@ flashcard WITHOUT ANY REPEATED QUESTIONS following the above instructions.'''
         except Exception as e:
             self.getFlashCard(context, difLevel)
     
-        
-# Q = Question()
-# print(Q.getQuestion('python programming'))
-# f = FlashCards()
-# x = f.getFlashCard('Python is a high-level, interpreted programming language. It is known for its simplicity and readability, making it an excellent choice for beginners. Python is versatile and can be used for a wide range of applications, including web development, data analysis, artificial intelligence, and scientific computing. Python uses an elegant syntax that allows developers to write clear and concise code. It also has a large standard library that provides ready-to-use modules and packages for common tasks. Python is an open-source language, which means that it is free to use and distribute. It is supported by a large and active community of developers who contribute to its growth and development. Python is a popular choice for both professional developers and hobbyists due to its ease of use and flexibility.', 1)
-# for i in x:
-#     print(i['question'])
-#     print(i['answer'])
-# x ={}
-# y = {'hell': 'opt1'}
-# for i in range(5):
-#     x['question'+str(i)] = y
-# print(x)

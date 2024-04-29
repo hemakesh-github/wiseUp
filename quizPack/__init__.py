@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/HEMAKESH/Documents/backend/Quiz/quiz.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/HEMAKESH/Documents/backend/Quiz/wiseUp.db'
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)

@@ -9,13 +9,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
-    def validate_email(self, username):
-        user = User.query.filter_by(email = User.data).first()
+   
+    def validate_username(self, username):
+        user = User.query.filter_by(username = username.data).first()
         if user == None:
-            raise ValidationError('User does not exist')
-    # def validate(self, username):
-    #     #to do
-    #     return True
+            raise ValidationError('No user exits with this username')
 
     def __repr__(self):
         return f"username: {self.username}"
@@ -34,9 +32,11 @@ class RegisterForm(FlaskForm):
             raise ValidationError('The email is already registered')
         
     def validate_username(self, username):
-        user = User.query.filter_by(email = username.data).first()
+        user = User.query.filter_by(username = username.data).first()
         if user != None:
             raise ValidationError('The username is already taken')
 
     def __repr__(self):
         return f"RegisterForm('{self.username}', '{self.email}')"
+    
+    
