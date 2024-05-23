@@ -60,6 +60,7 @@
 </div>
 <script>
     let view = document.getElementById('view');
+    if (view != null){
     view.addEventListener('click', (evt) => {
         evt.preventDefault();
         let formData = new FormData();
@@ -76,7 +77,7 @@
             alert("error occured")
         })
     })
-
+}
     const dpUpload = (file) => {
         let formData = new FormData();
         formData.append('file', file);

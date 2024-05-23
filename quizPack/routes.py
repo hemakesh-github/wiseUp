@@ -118,7 +118,7 @@ def changeDP():
         file = request.files['file']
         ext = file.filename.split('.')[-1]
         filename = 'user'+str(current_user.id)+'.'+ext
-        file.save('quizPack/static/images/' + filename)
+        file.save('/home/ec2-user/wiseUp/quizPack/static/images' + filename)
         user = current_user
         user.profile = filename
         db.session.commit()
