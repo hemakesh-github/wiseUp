@@ -1,0 +1,172 @@
+[2024-05-23 09:05:58 +0000] [60502] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 09:05:58 +0000] [60502] [INFO] Listening at: http://0.0.0.0:8000 (60502)
+[2024-05-23 09:05:58 +0000] [60502] [INFO] Using worker: sync
+[2024-05-23 09:05:58 +0000] [60503] [INFO] Booting worker with pid: 60503
+[2024-05-23 09:05:58 +0000] [60504] [INFO] Booting worker with pid: 60504
+[2024-05-23 09:05:58 +0000] [60505] [INFO] Booting worker with pid: 60505
+[2024-05-23 09:05:58 +0000] [60506] [INFO] Booting worker with pid: 60506
+[2024-05-23 09:05:58 +0000] [60507] [INFO] Booting worker with pid: 60507
+[2024-05-23 09:06:46 +0000] [60520] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 09:06:46 +0000] [60520] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:46 +0000] [60520] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:47 +0000] [60520] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:47 +0000] [60520] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:48 +0000] [60520] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:48 +0000] [60520] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:49 +0000] [60520] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:49 +0000] [60520] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:50 +0000] [60520] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:50 +0000] [60520] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:51 +0000] [60520] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-05-23 09:06:55 +0000] [60521] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 09:06:55 +0000] [60521] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:55 +0000] [60521] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:56 +0000] [60521] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:56 +0000] [60521] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:57 +0000] [60521] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:57 +0000] [60521] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:58 +0000] [60521] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:58 +0000] [60521] [ERROR] Retrying in 1 second.
+[2024-05-23 09:06:59 +0000] [60521] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:06:59 +0000] [60521] [ERROR] Retrying in 1 second.
+[2024-05-23 09:07:00 +0000] [60521] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-05-23 09:07:03 +0000] [60522] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 09:07:03 +0000] [60522] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:07:03 +0000] [60522] [ERROR] Retrying in 1 second.
+[2024-05-23 09:07:04 +0000] [60522] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:07:04 +0000] [60522] [ERROR] Retrying in 1 second.
+[2024-05-23 09:07:05 +0000] [60522] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:07:05 +0000] [60522] [ERROR] Retrying in 1 second.
+[2024-05-23 09:07:06 +0000] [60522] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:07:06 +0000] [60522] [ERROR] Retrying in 1 second.
+[2024-05-23 09:07:07 +0000] [60522] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:07:07 +0000] [60522] [ERROR] Retrying in 1 second.
+[2024-05-23 09:07:08 +0000] [60522] [ERROR] Can't connect to ('0.0.0.0', 8000)
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/json.py", line 218, in parse_result
+    return parse_json_markdown(text)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/json.py", line 152, in parse_json_markdown
+    return _parse_json(json_str, parser=parser)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/json.py", line 165, in _parse_json
+    return parser(json_str)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/json.py", line 125, in parse_partial_json
+    return json.loads(s, strict=strict)
+  File "/usr/lib64/python3.9/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 8 column 88 (char 271)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/quizPack/utils.py", line 61, in getQuestion
+    r = chain.invoke({"query": q})
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/runnables/base.py", line 2499, in invoke
+    input = step.invoke(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/base.py", line 178, in invoke
+    return self._call_with_config(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/runnables/base.py", line 1625, in _call_with_config
+    context.run(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/runnables/config.py", line 347, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/base.py", line 179, in <lambda>
+    lambda inner_input: self.parse_result([Generation(text=inner_input)]),
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/output_parsers/json.py", line 221, in parse_result
+    raise OutputParserException(msg, llm_output=text) from e
+langchain_core.exceptions.OutputParserException: Invalid json output: ```json
+{
+  "question": "What is the name of the second emperor of the New World?",
+  "opt1": "Kaido",
+  "opt2": "Big Mom",
+  "opt3": "Whitebeard",
+  "opt4": "Blackbeard",
+  "answer": "opt2",
+  "explanation": "Big Mom is the second emperor of the New World, and is known as the "Yonko of Sweets". She is the captain of the Big Mom Pirates and is one of the strongest pirates in the world."
+}
+[2024-05-23 09:08:15 +0000] [60502] [CRITICAL] WORKER TIMEOUT (pid:60505)
+[2024-05-23 09:08:15 +0000] [60505] [ERROR] Error handling request /topicChoose
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 178, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/flask/app.py", line 1488, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/flask/app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/flask/app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/flask/app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/home/ec2-user/wiseUp/quizPack/routes.py", line 60, in ChoseTopic
+    questions = q.getQuestion(topic, diffLevel)
+  File "/home/ec2-user/wiseUp/quizPack/utils.py", line 68, in getQuestion
+    self.getQuestion(topic, self.finalResult, N-len(self.finalResult))
+  File "/home/ec2-user/wiseUp/quizPack/utils.py", line 61, in getQuestion
+    r = chain.invoke({"query": q})
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/runnables/base.py", line 2499, in invoke
+    input = step.invoke(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/language_models/llms.py", line 248, in invoke
+    self.generate_prompt(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/language_models/llms.py", line 569, in generate_prompt
+    return self.generate(prompt_strings, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/language_models/llms.py", line 748, in generate
+    output = self._generate_helper(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/language_models/llms.py", line 606, in _generate_helper
+    raise e
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_core/language_models/llms.py", line 593, in _generate_helper
+    self._generate(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_google_genai/llms.py", line 290, in _generate
+    res = _completion_with_retry(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_google_genai/llms.py", line 95, in _completion_with_retry
+    return _completion_with_retry(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/tenacity/__init__.py", line 289, in wrapped_f
+    return self(f, *args, **kw)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/tenacity/__init__.py", line 379, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/tenacity/__init__.py", line 314, in iter
+    return fut.result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/usr/lib64/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/tenacity/__init__.py", line 382, in __call__
+    result = fn(*args, **kwargs)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/langchain_google_genai/llms.py", line 90, in _completion_with_retry
+    return llm.client.generate_text(prompt=prompt, **kwargs)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/generativeai/text.py", line 202, in generate_text
+    return _generate_response(client=client, request=request, request_options=request_options)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/generativeai/text.py", line 240, in _generate_response
+    response = client.generate_text(request, **request_options)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/text_service/client.py", line 648, in generate_text
+    response = rpc(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/api_core/timeout.py", line 120, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/google/api_core/grpc_helpers.py", line 76, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/grpc/_channel.py", line 1173, in __call__
+    ) = self._blocking(
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/grpc/_channel.py", line 1157, in _blocking
+    event = call.next_event()
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 367, in grpc._cython.cygrpc.SegregatedCall.next_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 188, in grpc._cython.cygrpc._next_call_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/channel.pyx.pxi", line 182, in grpc._cython.cygrpc._next_call_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 78, in grpc._cython.cygrpc._latent_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 61, in grpc._cython.cygrpc._internal_latent_event
+  File "src/python/grpcio/grpc/_cython/_cygrpc/completion_queue.pyx.pxi", line 42, in grpc._cython.cygrpc._next
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-05-23 09:08:15 +0000] [60505] [INFO] Worker exiting (pid: 60505)
+[2024-05-23 09:08:15 +0000] [60593] [INFO] Booting worker with pid: 60593

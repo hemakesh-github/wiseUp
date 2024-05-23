@@ -4,8 +4,12 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.pydantic_v1 import BaseModel, Field
 import time
 import os
+import json
 import traceback
 N = 5
+with open('/etc/config.json') as config_file:
+	config = json.load(config_file)
+
 class Quiz(BaseModel):
     question: str = Field(description="Question and also program if needed.")
     opt1: str = Field(description="1st option")
@@ -17,7 +21,7 @@ class Quiz(BaseModel):
 
 class LLMConfig():
     def __init__(self) :
-        self.api_key = os.environ.get('GOOGLE_AI_API')
+        self.api_key = config.get('GOOGLE_AI_API')
         self.llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key=self.api_key)
         
 
