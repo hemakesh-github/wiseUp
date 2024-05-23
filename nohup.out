@@ -170,3 +170,173 @@ Traceback (most recent call last):
 SystemExit: 1
 [2024-05-23 09:08:15 +0000] [60505] [INFO] Worker exiting (pid: 60505)
 [2024-05-23 09:08:15 +0000] [60593] [INFO] Booting worker with pid: 60593
+[2024-05-23 09:35:22 +0000] [61527] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 09:35:22 +0000] [61527] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:35:22 +0000] [61527] [ERROR] Retrying in 1 second.
+[2024-05-23 09:35:23 +0000] [61527] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:35:23 +0000] [61527] [ERROR] Retrying in 1 second.
+[2024-05-23 09:35:24 +0000] [61527] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:35:24 +0000] [61527] [ERROR] Retrying in 1 second.
+[2024-05-23 09:35:25 +0000] [61527] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:35:25 +0000] [61527] [ERROR] Retrying in 1 second.
+[2024-05-23 09:35:26 +0000] [61527] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 09:35:26 +0000] [61527] [ERROR] Retrying in 1 second.
+[2024-05-23 09:35:27 +0000] [61527] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-05-23 09:37:33 +0000] [60502] [CRITICAL] WORKER TIMEOUT (pid:60503)
+[2024-05-23 09:37:33 +0000] [60503] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 269, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-05-23 09:37:33 +0000] [60503] [INFO] Worker exiting (pid: 60503)
+[2024-05-23 09:37:33 +0000] [61592] [INFO] Booting worker with pid: 61592
+[2024-05-23 09:39:34 +0000] [60502] [INFO] Handling signal: hup
+[2024-05-23 09:39:34 +0000] [60502] [INFO] Hang up: Master
+[2024-05-23 09:39:34 +0000] [61641] [INFO] Booting worker with pid: 61641
+[2024-05-23 09:39:34 +0000] [61642] [INFO] Booting worker with pid: 61642
+[2024-05-23 09:39:34 +0000] [60502] [ERROR] Worker (pid:60504) was sent SIGHUP!
+[2024-05-23 09:39:34 +0000] [60502] [ERROR] Worker (pid:60506) was sent SIGHUP!
+[2024-05-23 09:39:34 +0000] [60502] [ERROR] Worker (pid:60507) was sent SIGHUP!
+[2024-05-23 09:39:34 +0000] [60502] [ERROR] Worker (pid:60593) was sent SIGHUP!
+[2024-05-23 09:39:34 +0000] [61643] [INFO] Booting worker with pid: 61643
+[2024-05-23 09:39:34 +0000] [61644] [INFO] Booting worker with pid: 61644
+[2024-05-23 09:39:34 +0000] [60502] [ERROR] Worker (pid:61592) was sent SIGHUP!
+[2024-05-23 09:39:34 +0000] [61645] [INFO] Booting worker with pid: 61645
+[2024-05-23 09:41:27 +0000] [60502] [CRITICAL] WORKER TIMEOUT (pid:61643)
+[2024-05-23 09:41:27 +0000] [60502] [CRITICAL] WORKER TIMEOUT (pid:61645)
+[2024-05-23 09:41:27 +0000] [61645] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 269, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-05-23 09:41:27 +0000] [61643] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 269, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-05-23 09:41:27 +0000] [61643] [INFO] Worker exiting (pid: 61643)
+[2024-05-23 09:41:27 +0000] [61645] [INFO] Worker exiting (pid: 61645)
+[2024-05-23 09:41:27 +0000] [61732] [INFO] Booting worker with pid: 61732
+[2024-05-23 09:41:27 +0000] [61733] [INFO] Booting worker with pid: 61733
+[2024-05-23 09:44:34 +0000] [60502] [CRITICAL] WORKER TIMEOUT (pid:61642)
+[2024-05-23 09:44:34 +0000] [60502] [CRITICAL] WORKER TIMEOUT (pid:61733)
+[2024-05-23 09:44:34 +0000] [61642] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 269, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-05-23 09:44:34 +0000] [61733] [ERROR] Error handling request (no URI read)
+Traceback (most recent call last):
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/sync.py", line 134, in handle
+    req = next(parser)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/parser.py", line 42, in __next__
+    self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 257, in __init__
+    super().__init__(cfg, unreader, peer_addr)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 60, in __init__
+    unused = self.parse(self.unreader)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 269, in parse
+    self.get_data(unreader, buf, stop=True)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/message.py", line 260, in get_data
+    data = unreader.read()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 37, in read
+    d = self.chunk()
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/http/unreader.py", line 64, in chunk
+    return self.sock.recv(self.mxchunk)
+  File "/home/ec2-user/wiseUp/venve/lib64/python3.9/site-packages/gunicorn/workers/base.py", line 203, in handle_abort
+    sys.exit(1)
+SystemExit: 1
+[2024-05-23 09:44:34 +0000] [61642] [INFO] Worker exiting (pid: 61642)
+[2024-05-23 09:44:34 +0000] [61733] [INFO] Worker exiting (pid: 61733)
+[2024-05-23 09:44:34 +0000] [61788] [INFO] Booting worker with pid: 61788
+[2024-05-23 09:44:34 +0000] [61789] [INFO] Booting worker with pid: 61789
+[2024-05-23 10:24:39 +0000] [62971] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 10:24:39 +0000] [62971] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 10:24:39 +0000] [62971] [ERROR] Retrying in 1 second.
+[2024-05-23 10:24:40 +0000] [62971] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 10:24:40 +0000] [62971] [ERROR] Retrying in 1 second.
+[2024-05-23 10:24:41 +0000] [62971] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 10:24:41 +0000] [62971] [ERROR] Retrying in 1 second.
+[2024-05-23 10:24:42 +0000] [62971] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 10:24:42 +0000] [62971] [ERROR] Retrying in 1 second.
+[2024-05-23 10:24:43 +0000] [62971] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-05-23 10:24:43 +0000] [62971] [ERROR] Retrying in 1 second.
+[2024-05-23 10:24:44 +0000] [62971] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-05-23 10:26:53 +0000] [61732] [INFO] Parent changed, shutting down: <Worker 61732>
+[2024-05-23 10:26:53 +0000] [61732] [INFO] Worker exiting (pid: 61732)
+[2024-05-23 10:26:53 +0000] [61788] [INFO] Parent changed, shutting down: <Worker 61788>
+[2024-05-23 10:26:53 +0000] [61789] [INFO] Parent changed, shutting down: <Worker 61789>
+[2024-05-23 10:26:53 +0000] [61788] [INFO] Worker exiting (pid: 61788)
+[2024-05-23 10:26:53 +0000] [61789] [INFO] Worker exiting (pid: 61789)
+[2024-05-23 10:27:19 +0000] [63109] [INFO] Starting gunicorn 22.0.0
+[2024-05-23 10:27:19 +0000] [63109] [INFO] Listening at: http://0.0.0.0:8000 (63109)
+[2024-05-23 10:27:19 +0000] [63109] [INFO] Using worker: sync
+[2024-05-23 10:27:19 +0000] [63110] [INFO] Booting worker with pid: 63110
+[2024-05-23 10:27:19 +0000] [63111] [INFO] Booting worker with pid: 63111
+[2024-05-23 10:27:20 +0000] [63112] [INFO] Booting worker with pid: 63112
+[2024-05-23 10:27:20 +0000] [63113] [INFO] Booting worker with pid: 63113
+[2024-05-23 10:27:20 +0000] [63114] [INFO] Booting worker with pid: 63114
