@@ -89,6 +89,7 @@ let getQuestions = () => {
         window.location.href = "/flashCardQues";
     }).catch(error => {
         alert("Error occured while generating flashcards")
+        load.style.display = "none"
     })
 }
 const c_btn = document.getElementById('topic-btn');
