@@ -10,7 +10,7 @@ with open('/etc/config.json') as config_file:
 	config = json.load(config_file)
 
 app.config['SECRET_KEY'] = config.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/ec2-user/wiseUp/wiseUp.db'
+app.config['SQLALCHEMY_DATABASE_URI'] =  config.get('SQLALCHEMY_DATABASE_URI')
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
