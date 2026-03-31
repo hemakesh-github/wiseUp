@@ -10,7 +10,11 @@ with open('/etc/config.json') as config_file:
 	config = json.load(config_file)
 
 app.config['SECRET_KEY'] = config.get('SECRET_KEY')
+<<<<<<< HEAD
 app.config['SQLALCHEMY_DATABASE_URI'] = config.get('DATABASE_URI')
+=======
+app.config['SQLALCHEMY_DATABASE_URI'] =  config.get('SQLALCHEMY_DATABASE_URI')
+>>>>>>> 139ddc0403e7c02bb146b941bdbc6fed622e50ed
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
