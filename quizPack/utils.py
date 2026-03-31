@@ -1,11 +1,13 @@
 from langchain.prompts import PromptTemplate
-from langchain_google_genai import GoogleGenerativeAI
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.pydantic_v1 import BaseModel, Field
 import time
 import os
 import json
 import traceback
+from langchain_groq import ChatGroq
+
+
 N = 5
 with open('/etc/config.json') as config_file:
 	config = json.load(config_file)
@@ -21,8 +23,12 @@ class Quiz(BaseModel):
 
 class LLMConfig():
     def __init__(self) :
-        self.api_key = config.get('GOOGLE_AI_API')
-        self.llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key=self.api_key)
+        self.api_key = config.get("GROQ_API")
+        self.llm = ChatGroq(
+            model="mixtral-8x7b-32768",
+            max_retries=2,
+            api_key = self.api_key
+        )
         
 
 class Question(LLMConfig):
@@ -75,6 +81,7 @@ class Question(LLMConfig):
     def outputCheck(self,r):
         if r['answer'] not in ['opt1', 'opt2', 'opt3', 'opt4']:
             return False
+        print(r)
         return True
         
 
